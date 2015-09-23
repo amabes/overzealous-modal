@@ -1,0 +1,10 @@
+/*!
+ * overzealous-modal v1 (https://github.com/amabes/overzealous-modal)
+ * Author: Alan Mabry
+ * Website: www.alanmabry.com/work
+ * Contact: frontend@alanmabry.com
+ *
+ * Copyright 2015 overzealous-modal
+ * Licensed under MIT (https://github.com/amabes/overzealous-modal/blob/master/LICENSE)
+ */
+#overzealous-modal-background{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,.8);display:none}.overzealous-modal{width:50%;margin:10% auto;text-align:center}.overzealous-modal h1{font-size:60px;margin:0 0 10px}.overzealous-modal h1 span:before{color:#6ed2bf;margin:0}.overzealous-modal p{font-size:30px}.overzealous-modal p .highlight{text-transform:uppercase;color:#6ed2bf}.overzealous-btn:first-child{margin:0 20px 0 0}

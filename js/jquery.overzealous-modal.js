@@ -1,3 +1,13 @@
+/*!
+ * overzealous-modal v1 (https://github.com/amabes/overzealous-modal)
+ * Author: Alan Mabry
+ * Website: www.alanmabry.com/work
+ * Contact: frontend@alanmabry.com
+ *
+ * Copyright 2015 overzealous-modal
+ * Licensed under MIT (https://github.com/amabes/overzealous-modal/blob/master/LICENSE)
+ */
+ 
 (function ($) {
  
     $.fn.overzealous = function(options) {
