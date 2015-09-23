@@ -24,26 +24,6 @@
 	text-align: center;
 }
 
-/* OPTIONAL */
-
-.overzealous-modal h1 {
-	font-size: 60px;
-	margin: 0 0 10px 0;
-}
-.overzealous-modal h1 span:before {
-	color: #6ed2bf;
-	margin:0;
-}
-
-.overzealous-modal p {
-	font-size: 30px;
-}
-
-.overzealous-modal p .highlight {
-	text-transform: uppercase;
-	color: #6ed2bf;
-}
-
 .overzealous-btn:first-child {
 	margin:0 20px 0 0;
 }
