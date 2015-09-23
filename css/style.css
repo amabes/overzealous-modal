@@ -1,0 +1,46 @@
+body {
+	padding:20px;
+	font-family: arial;
+	background: #e9eaed;
+    color: #484848;
+}
+
+/* BTNS */
+
+.btn {
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.5s ease;
+    border: none !important;
+    border-radius: 0;
+    display: inline-block;
+}
+
+.btn.xl {
+    min-width: 140px;
+    max-width: 350px;
+    font-size: 30px;
+    padding: 10px 40px;
+}
+
+.btn.black {
+    background: black;
+    color: #fff !important;
+}
+
+.btn.black:hover {
+	background:#6ed2bf !important;
+	color:#000 !important;
+}
+
+.btn.ghost {
+    background: white;
+    color: #333 !important;
+    outline: 1px #999 solid !important;
+}
+
+.btn.ghost:hover {
+	background:#6ed2bf;
+	color:#333 !important;
+	outline:none !important;
+}
