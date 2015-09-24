@@ -24,7 +24,7 @@ $('#ozm-1').overzealous({
     		classes:'custom css classes',
     		action:function(){
     			alert('primary action');
-    			// the modal will close when after executing this function
+    			// the modal will close after executing this fn
     		}
     	},
     	secondary:{
