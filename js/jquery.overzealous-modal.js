@@ -35,46 +35,64 @@
     };
    	
 	$.fn.overzealous.defaults = {
-	    color: "#556b2f",
-	    backgroundColor: "white",
-	    buttons:{
-	    	primary:{
-	    		text:'Primary',
-	    		classes:'',
-	    		action:function(){
-		    		console.log('primary');
-		    	}
-	    	},
-	    	secondary:{
-	    		text:'Secondary',
-	    		classes:'',
-	    		action:function(){
-		    		console.log('secondary');
-		    	}
-		    }
-	    }
+	    // buttons:{
+	    // 	primary:{
+	    // 		text:'Primary',
+	    // 		classes:'',
+	    // 		action:function(){
+		   //  		console.log('primary');
+		   //  	}
+	    // 	},
+	    // 	secondary:{
+	    // 		text:'Secondary',
+	    // 		classes:'',
+	    // 		action:function(){
+		   //  		console.log('secondary');
+		   //  	}
+		   //  }
+	    // }
 	};
 
 	$.fn.overzealous.markup = function(opts) {
-		var markup = 
-        	'<div id="overzealous-btns">'+
-				'<a class="overzealous-btn '+opts.buttons.primary.classes+'" href="javascript:void(0);">'+opts.buttons.primary.text+'</a>'+
-				'<a class="overzealous-btn '+opts.buttons.secondary.classes+'" href="javascript:void(0);">'+opts.buttons.secondary.text+'</a>'+
-			'</div>';
-	    $('.overzealous-modal').append(markup);
+		var markup = '<div id="overzealous-btns">';
 
-	    $.fn.overzealous.click_events(opts.buttons);
+		console.log(opts);
+		
+		if(typeof(opts.buttons) != 'undefined'){
+
+			if(typeof(opts.buttons.primary) != 'undefined'){
+				markup+='<a primary class="overzealous-btn '+opts.buttons.primary.classes+'" href="javascript:void(0);">'+opts.buttons.primary.text+'</a>';
+			}
+			
+			if(typeof(opts.buttons.secondary) != 'undefined'){
+				markup+='<a secondary class="overzealous-btn '+opts.buttons.secondary.classes+'" href="javascript:void(0);">'+opts.buttons.secondary.text+'</a>';
+			}
+
+		}
+
+		markup+='</div>';
+				
+	    $('.overzealous-modal').append(markup);
+	    
+	    if(typeof(opts.buttons) != 'undefined'){
+	    	$.fn.overzealous.click_events(opts.buttons);
+		}
 	};
 
 	$.fn.overzealous.click_events = function(buttons) {
-	    $('.overzealous-btn').first().unbind().click(function(){
-        	buttons.primary.action();
-        	$.fn.overzealous.close();
-        });
-
-        $('.overzealous-btn').last().unbind().click(function(){
-			buttons.secondary.action();
-        });
+	    
+	    if(typeof(buttons.primary) != 'undefined'){
+		    $('.overzealous-btn[primary]').unbind().click(function(){
+	        	buttons.primary.action();
+	        	$.fn.overzealous.close();
+	        });
+		}
+        
+        if(typeof(buttons.secondary) != 'undefined'){
+	    	$('.overzealous-btn[secondary]').unbind().click(function(){
+				buttons.secondary.action();
+	        });
+    	}
 	};
 
 	$.fn.overzealous.close = function(params){

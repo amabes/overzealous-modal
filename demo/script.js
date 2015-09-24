@@ -20,7 +20,18 @@ var open_overlay_one = function(){
 }
 
 var open_overlay_two = function(){
-	$('#ozm-1').overzealous();
+	$('#ozm-2').overzealous({
+		buttons:{
+			secondary:{
+	    		text:'Skip',
+	    		classes:'btn xl ghost',
+	    		action:function(){
+	    			alert('secondary action');
+	    			$.fn.overzealous.close();
+	    		}
+	    	}
+    	}
+	});
 }
 
 $(document).ready(function(){
