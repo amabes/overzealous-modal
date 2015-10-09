@@ -55,17 +55,24 @@
 
 	$.fn.overzealous.markup = function(opts) {
 		var markup = '<div id="overzealous-btns">';
-
 		console.log(opts);
 		
 		if(typeof(opts.buttons) != 'undefined'){
 
 			if(typeof(opts.buttons.primary) != 'undefined'){
-				markup+='<a primary class="overzealous-btn '+opts.buttons.primary.classes+'" href="javascript:void(0);">'+opts.buttons.primary.text+'</a>';
+				var p_id = ' ';
+				if(typeof(opts.buttons.primary.id) != 'undefined'){
+					p_id = ' id="'+opts.buttons.primary.id+'"';
+				}
+				markup+='<a'+p_id+'primary class="overzealous-btn '+opts.buttons.primary.classes+'" href="javascript:void(0);">'+opts.buttons.primary.text+'</a>';
 			}
 			
 			if(typeof(opts.buttons.secondary) != 'undefined'){
-				markup+='<a secondary class="overzealous-btn '+opts.buttons.secondary.classes+'" href="javascript:void(0);">'+opts.buttons.secondary.text+'</a>';
+				var s_id = ' ';
+				if(typeof(opts.buttons.secondary.id) != 'undefined'){
+					s_id = ' id="'+opts.buttons.secondary.id+'"';
+				}
+				markup+='<a'+s_id+'secondary class="overzealous-btn '+opts.buttons.secondary.classes+'" href="javascript:void(0);">'+opts.buttons.secondary.text+'</a>';
 			}
 
 		}

@@ -2,6 +2,7 @@ var open_overlay_one = function(){
 	$('#ozm-1').overzealous({
 	    buttons:{
 	    	primary:{
+	    		id:'button-id-primary',
 	    		text:'Dashboard',
 	    		classes:'btn xl black',
 	    		action:function(){
