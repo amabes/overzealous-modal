@@ -8,154 +8,161 @@
  * Licensed under MIT (https://github.com/amabes/overzealous-modal/blob/master/LICENSE)
  */
 
-(function ($) {
+(function($) {
 
-    $.fn.overzealous = function(options) {
+  $.fn.overzealous = function(options) {
 
-    	var that = this;
+    var that = this;
 
-    	var opts = $.extend( {}, $.fn.overzealous.defaults, options );
+    var opts = $.extend({}, $.fn.overzealous.defaults, options);
 
-    	var markup = '<div id="overzealous-modal-background"></div>';
+    var markup = '<div id="overzealous-modal-background"></div>';
 
-    	var open = function(){
+    var open = function() {
 
         that.addClass('overzealous-modal');
 
-        // Preserve actions 
-        if(typeof(opts.preserve) != 'undefined'){
+        // Preserve actions
+        if (typeof(opts.preserve) != 'undefined') {
 
           // Wrap, then open keeping existing bindings in place.
-            that.wrap('<div id="overzealous-modal-background"></div>');
+          that.wrap('<div id="overzealous-modal-background"></div>');
 
         } else {
           // Wrap, then append to div @ bottom of window to ensure overlay is over everything.
-    		    that.wrap('<div id="overzealous-modal-wrapper"></div>').appendTo('#overzealous-modal-background');
+          that.wrap('<div id="overzealous-modal-wrapper"></div>').appendTo('#overzealous-modal-background');
 
         }
-	        $.fn.overzealous.markup(opts);
+        $.fn.overzealous.markup(opts);
 
-	        $('#overzealous-modal-background').fadeIn(function(){
+        $('#overzealous-modal-background').fadeIn(function() {
 
-	        	$('.overzealous-modal').delay(250).fadeIn();
+          $('.overzealous-modal').delay(250).fadeIn();
 
-	        });
-    	}
-    	// Modal already open
-    	if($('#overzealous-modal-background').length!=0){
+        });
+      }
+      // Modal already open
+    if ($('#overzealous-modal-background').length != 0) {
 
-    		// replace modal content with new content
-    		$.fn.overzealous.close({close:false});
+      // replace modal content with new content
+      $.fn.overzealous.close({
+        close: false
+      });
 
-    		open();
+      open();
 
-    	}else{
+    } else {
 
-    		$('body').append(markup);
+      $('body').append(markup);
 
-    		open();
-    	}
-    };
+      open();
+    }
+  };
 
-	$.fn.overzealous.defaults = {};
+  $.fn.overzealous.defaults = {};
 
-	$.fn.overzealous.markup = function(opts) {
+  $.fn.overzealous.markup = function(opts) {
 
-		var markup = '<div id="overzealous-btns">';
+    var markup = '<div id="overzealous-btns">';
 
-		if(typeof(opts.buttons) != 'undefined'){
+    if (typeof(opts.buttons) != 'undefined') {
 
-			if(typeof(opts.buttons.primary) != 'undefined'){
+      if (typeof(opts.buttons.primary) != 'undefined') {
 
-				var p_id = ' ';
+        var p_id = ' ';
 
-				if(typeof(opts.buttons.primary.id) != 'undefined'){
+        if (typeof(opts.buttons.primary.id) != 'undefined') {
 
-					p_id = ' id="'+opts.buttons.primary.id+'"';
+          p_id = ' id="' + opts.buttons.primary.id + '"';
 
-				}
+        }
 
-				markup+='<a'+p_id+'primary class="overzealous-btn '+opts.buttons.primary.classes+'" href="javascript:void(0);">'+opts.buttons.primary.text+'</a>';
+        markup += '<a' + p_id + 'primary class="overzealous-btn ' + opts.buttons.primary.classes + '" href="javascript:void(0);">' + opts.buttons.primary.text + '</a>';
 
-			}
+      }
 
-			if(typeof(opts.buttons.secondary) != 'undefined'){
+      if (typeof(opts.buttons.secondary) != 'undefined') {
 
-				var s_id = ' ';
+        var s_id = ' ';
 
-				if(typeof(opts.buttons.secondary.id) != 'undefined'){
+        if (typeof(opts.buttons.secondary.id) != 'undefined') {
 
-					s_id = ' id="'+opts.buttons.secondary.id+'"';
+          s_id = ' id="' + opts.buttons.secondary.id + '"';
 
-				}
+        }
 
-				markup+='<a'+s_id+'secondary class="overzealous-btn '+opts.buttons.secondary.classes+'" href="javascript:void(0);">'+opts.buttons.secondary.text+'</a>';
+        markup += '<a' + s_id + 'secondary class="overzealous-btn ' + opts.buttons.secondary.classes + '" href="javascript:void(0);">' + opts.buttons.secondary.text + '</a>';
 
-			}
+      }
 
-		}
+    }
 
-		markup+='</div>';
+    markup += '</div>';
 
-	    $('.overzealous-modal').append(markup);
+    $('.overzealous-modal').append(markup);
 
-	    if(typeof(opts.buttons) != 'undefined'){
+    if (typeof(opts.buttons) != 'undefined') {
 
-	    	$.fn.overzealous.click_events(opts.buttons);
+      $.fn.overzealous.click_events(opts.buttons);
 
-		}
+    }
 
-	};
+  };
 
-	$.fn.overzealous.click_events = function(buttons) {
+  $.fn.overzealous.click_events = function(buttons) {
 
-	    if(typeof(buttons.primary) != 'undefined'){
+    if (typeof(buttons.primary) != 'undefined') {
 
-		    $('.overzealous-btn[primary]').unbind().click(function(){
+      $('.overzealous-btn[primary]').unbind().click(function() {
 
-	        	buttons.primary.action();
+        buttons.primary.action();
 
-	        	$.fn.overzealous.close();
+        $.fn.overzealous.close();
 
-	        });
+      });
 
-		}
+    }
 
-        if(typeof(buttons.secondary) != 'undefined'){
+    if (typeof(buttons.secondary) != 'undefined') {
 
-	    	$('.overzealous-btn[secondary]').unbind().click(function(){
+      $('.overzealous-btn[secondary]').unbind().click(function() {
 
-				buttons.secondary.action();
+        buttons.secondary.action();
 
-	        });
+      });
 
-    	}
-	};
+    }
+  };
 
-	$.fn.overzealous.close = function(params,callback){
+  $.fn.overzealous.close = function(params, callback) {
 
-		if(typeof(params)=='undefined') params = {}
+    if (typeof(params) == 'undefined') params = {}
 
-		if(typeof(params.close)=='undefined') params.close = true;
+    if (typeof(params.close) == 'undefined') params.close = true;
 
-	    $('#overzealous-btns').remove();
+    $('#overzealous-btns').remove();
 
-	    if($('#overzealous-modal-wrapper').length!=0){
+    if ($('#overzealous-modal-wrapper').length != 0) {
 
-	    	$('.overzealous-modal').hide().appendTo('#overzealous-modal-wrapper').unwrap().removeClass('overzealous-modal');
+      $('.overzealous-modal').hide().appendTo('#overzealous-modal-wrapper').unwrap().removeClass('overzealous-modal');
 
-		}
+    } else {
 
-	    if(params.close){
+      // Preserve actions
+      $('.overzealous-modal').hide().unwrap().removeClass('overzealous-modal');
 
-		    $('#overzealous-modal-background').fadeOut(function(){
+    }
 
-		    	$(this).remove();
+    if (params.close) {
 
-		    	if($.isFunction(callback)) callback();
+      $('#overzealous-modal-background').fadeOut(function() {
 
-		    });
-		}
-	};
+        $(this).remove();
 
-}( jQuery ));
+        if ($.isFunction(callback)) callback();
+
+      });
+    }
+  };
+
+}(jQuery));
