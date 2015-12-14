@@ -1,6 +1,8 @@
 # Overzealous Modal
 Large modal for user feedback
 
+http://amabes.github.io/overzealous-modal
+
 <img src="screenshot.png" style="width:100%;" />
 
 <br>
