@@ -41,5 +41,7 @@ $('#ozm-1').overzealous({
 	    	}
     	}
     }
+},function(){
+		// optional callback executed after overlay opens.
 });
 ```

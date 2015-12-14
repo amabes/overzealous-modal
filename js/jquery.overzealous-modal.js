@@ -10,7 +10,7 @@
 
 (function($) {
 
-  $.fn.overzealous = function(options) {
+  $.fn.overzealous = function(options, callback) {
 
     var that = this;
 
@@ -37,11 +37,16 @@
 
         $('#overzealous-modal-background').fadeIn(function() {
 
-          $('.overzealous-modal').delay(250).fadeIn();
+          $('.overzealous-modal').delay(250).fadeIn(function(){
+
+            if ($.isFunction(callback)) callback();
+
+          });
 
         });
-      }
-      // Modal already open
+    }
+
+    // Modal already open
     if ($('#overzealous-modal-background').length != 0) {
 
       // replace modal content with new content
