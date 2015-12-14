@@ -7,32 +7,43 @@
  * Copyright 2015 overzealous-modal
  * Licensed under MIT (https://github.com/amabes/overzealous-modal/blob/master/LICENSE)
  */
- 
+
 (function ($) {
- 
+
     $.fn.overzealous = function(options) {
 
     	var that = this;
-    	
+
     	var opts = $.extend( {}, $.fn.overzealous.defaults, options );
-    	
+
     	var markup = '<div id="overzealous-modal-background"></div>';
-    	
+
     	var open = function(){
 
-    		that.wrap('<div id="overzealous-modal-wrapper"></div>').addClass('overzealous-modal').appendTo('#overzealous-modal-background');
-        
+        that.addClass('overzealous-modal');
+
+        // Preserve actions 
+        if(typeof(opts.preserve) != 'undefined'){
+
+          // Wrap, then open keeping existing bindings in place.
+            that.wrap('<div id="overzealous-modal-background"></div>');
+
+        } else {
+          // Wrap, then append to div @ bottom of window to ensure overlay is over everything.
+    		    that.wrap('<div id="overzealous-modal-wrapper"></div>').appendTo('#overzealous-modal-background');
+
+        }
 	        $.fn.overzealous.markup(opts);
 
 	        $('#overzealous-modal-background').fadeIn(function(){
-	        	
+
 	        	$('.overzealous-modal').delay(250).fadeIn();
 
 	        });
     	}
     	// Modal already open
     	if($('#overzealous-modal-background').length!=0){
-    		
+
     		// replace modal content with new content
     		$.fn.overzealous.close({close:false});
 
@@ -41,17 +52,17 @@
     	}else{
 
     		$('body').append(markup);
-    		
+
     		open();
     	}
     };
-   	
+
 	$.fn.overzealous.defaults = {};
 
 	$.fn.overzealous.markup = function(opts) {
 
 		var markup = '<div id="overzealous-btns">';
-		
+
 		if(typeof(opts.buttons) != 'undefined'){
 
 			if(typeof(opts.buttons.primary) != 'undefined'){
@@ -67,7 +78,7 @@
 				markup+='<a'+p_id+'primary class="overzealous-btn '+opts.buttons.primary.classes+'" href="javascript:void(0);">'+opts.buttons.primary.text+'</a>';
 
 			}
-			
+
 			if(typeof(opts.buttons.secondary) != 'undefined'){
 
 				var s_id = ' ';
@@ -85,9 +96,9 @@
 		}
 
 		markup+='</div>';
-				
+
 	    $('.overzealous-modal').append(markup);
-	    
+
 	    if(typeof(opts.buttons) != 'undefined'){
 
 	    	$.fn.overzealous.click_events(opts.buttons);
@@ -97,7 +108,7 @@
 	};
 
 	$.fn.overzealous.click_events = function(buttons) {
-	    
+
 	    if(typeof(buttons.primary) != 'undefined'){
 
 		    $('.overzealous-btn[primary]').unbind().click(function(){
@@ -109,7 +120,7 @@
 	        });
 
 		}
-        
+
         if(typeof(buttons.secondary) != 'undefined'){
 
 	    	$('.overzealous-btn[secondary]').unbind().click(function(){
@@ -138,7 +149,7 @@
 	    if(params.close){
 
 		    $('#overzealous-modal-background').fadeOut(function(){
-		    	
+
 		    	$(this).remove();
 
 		    	if($.isFunction(callback)) callback();
@@ -146,5 +157,5 @@
 		    });
 		}
 	};
- 
+
 }( jQuery ));

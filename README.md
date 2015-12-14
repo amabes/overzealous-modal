@@ -4,7 +4,7 @@ Large modal for user feedback
 <img src="screenshot.png" style="width:100%;" />
 
 <br>
-##GETTING STARTED	
+##GETTING STARTED
 Grab the minified css and js in the "dist" folder.
 #####HTML
 ```
@@ -19,6 +19,7 @@ Grab the minified css and js in the "dist" folder.
 ```
 $('#ozm-1').overzealous({
 	buttons:{
+			//preserve:true, // Preserve actions already bound to elements in overlay markup
     	primary:{
     		text:'Dashboard',
     		classes:'custom css classes',
