@@ -167,7 +167,13 @@
         if ($.isFunction(callback)) callback();
 
       });
+
+    } else {
+
+      if ($.isFunction(callback)) callback();
+
     }
+
   };
 
 }(jQuery));
