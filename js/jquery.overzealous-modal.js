@@ -4,7 +4,7 @@
  * Website: www.alanmabry.com/work
  * Contact: frontend@alanmabry.com
  *
- * Copyright 2015 overzealous-modal
+ * Copyright 2015-2016 overzealous-modal
  * Licensed under MIT (https://github.com/amabes/overzealous-modal/blob/master/LICENSE)
  */
 
@@ -26,6 +26,8 @@
 
       // Preserve actions
       if (typeof(opts.preserve) != 'undefined') {
+
+        $('body').addClass('overzealous-preserve-options');
 
         // Wrap, then open keeping existing bindings in place.
         that.wrap('<div id="overzealous-modal-background" rel="' + window.location.pathname + '"></div>');
@@ -150,6 +152,8 @@
     if (typeof(params) == 'undefined') params = {}
 
     $('body').removeClass('overzealous-open');
+
+    $('body').removeClass('overzealous-preserve-options');
 
     if (typeof(params.close) == 'undefined') params.close = true;
 
