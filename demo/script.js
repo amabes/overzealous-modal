@@ -1,6 +1,5 @@
 var open_overlay_one = function(){
 	$('#ozm-1').overzealous({
-			blur:'#app',
 	    buttons:{
 	    	primary:{
 	    		id:'button-id-primary',
@@ -23,7 +22,6 @@ var open_overlay_one = function(){
 
 var open_overlay_two = function(){
 	$('#ozm-2').overzealous({
-		blur:'#app',
 		buttons:{
 			secondary:{
 	    		text:'Skip',

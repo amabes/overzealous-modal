@@ -22,11 +22,7 @@
 
       that.addClass('overzealous-modal');
 
-      if (typeof(opts.blur) !== 'undefined') {
-
-        $(opts.blur).addClass('overzealous-blur');
-
-      }
+      $('body').addClass('overzealous-open');
 
       // Preserve actions
       if (typeof(opts.preserve) != 'undefined') {
@@ -153,9 +149,7 @@
 
     if (typeof(params) == 'undefined') params = {}
 
-    if($('.overzealous-blur').length !== 0){
-      $('.overzealous-blur').removeClass('overzealous-blur');
-    }
+    $('body').removeClass('overzealous-open');
 
     if (typeof(params.close) == 'undefined') params.close = true;
 
