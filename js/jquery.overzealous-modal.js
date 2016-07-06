@@ -22,21 +22,26 @@
 
       that.addClass('overzealous-modal');
 
-      $('body').addClass('overzealous-open');
+      $('body').addClass('overzealous-open').attr('overzealous-open', true); // TODO - deprecate .overzealous-open class
 
       // Preserve actions
       if (typeof(opts.preserve) != 'undefined') {
 
-        $('body').addClass('overzealous-preserve-options');
+        $('body').addClass('overzealous-preserve-options').attr('overzealous-preserve-options', true); // TODO - deprecate .overzealous-preserve-options class
 
         // Wrap, then open keeping existing bindings in place.
         that.wrap('<div id="overzealous-modal-background" rel="' + window.location.pathname + '"></div>');
 
       } else {
-        // Wrap, then append to div @ bottom of window to ensure overlay is over everything.
-        that.wrap('<div id="overzealous-modal-wrapper" rel="' + window.location.pathname + '"></div>').appendTo('#overzealous-modal-background');
+
+        // Create a placeholder via wrapping the div before we move it
+        that.wrap('<div id="overzealous-modal-wrapper" rel="' + window.location.pathname + '"></div>');
+
+        // Move the div to the bottom of body to ensure overlay is over everything.
+        that.appendTo('#overzealous-modal-background');
 
       }
+
       $.fn.overzealous.markup(opts);
 
       $('#overzealous-modal-background').fadeIn('fast', function() {
@@ -151,9 +156,9 @@
 
     if (typeof(params) == 'undefined') params = {}
 
-    $('body').removeClass('overzealous-open');
+    $('body').removeClass('overzealous-open').removeAttr('overzealous-open'); // TODO - deprecate .overzealous-open class
 
-    $('body').removeClass('overzealous-preserve-options');
+    $('body').removeClass('overzealous-preserve-options').removeAttr('overzealous-preserve-options');  // TODO - deprecate .overzealous-preserve-options class
 
     if (typeof(params.close) == 'undefined') params.close = true;
 
