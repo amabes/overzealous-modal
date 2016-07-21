@@ -16,47 +16,32 @@
 
     var opts = $.extend({}, $.fn.overzealous.defaults, options);
 
-    var markup = '<div id="overzealous-modal-background" rel="' + window.location.pathname + '"></div>';
-
     var open = function() {
 
       that.addClass('overzealous-modal');
 
-      $('body').addClass('overzealous-open').attr('overzealous-open', true); // TODO - deprecate .overzealous-open class
+      $('body').attr('overzealous-open', true);
 
-      // Preserve actions
-      if (typeof(opts.preserve) != 'undefined') {
+      // Wrap, then open keeping existing bindings in place.
+      that.wrap('<div id="overzealous-modal-background" class="'+that.attr('id')+'" rel="' + window.location.pathname + '"></div>');
 
-        $('body').addClass('overzealous-preserve-options').attr('overzealous-preserve-options', true); // TODO - deprecate .overzealous-preserve-options class
-
-        // Wrap, then open keeping existing bindings in place.
-        that.wrap('<div id="overzealous-modal-background" rel="' + window.location.pathname + '"></div>');
-
-      } else {
-
-        // Create a placeholder via wrapping the div before we move it
-        that.wrap('<div id="overzealous-modal-wrapper" rel="' + window.location.pathname + '"></div>');
-
-        // Move the div to the bottom of body to ensure overlay is over everything.
-        that.appendTo('#overzealous-modal-background');
-
-      }
-
+      // Setup buttons and bind actions
       $.fn.overzealous.markup(opts);
 
-      $('#overzealous-modal-background').fadeIn('fast', function() {
+      $('#overzealous-blackout').fadeIn('fast');
 
-        $('.overzealous-modal').fadeIn('fast', function() {
+      $('#overzealous-modal-background').show();
 
-          if ($.isFunction(callback)) callback();
+      $('.overzealous-modal').fadeIn('fast', function() {
 
-        });
+        if ($.isFunction(callback)) callback();
 
       });
+
     }
 
     // Modal already open
-    if ($('#overzealous-modal-background').length != 0) {
+    if ($('#overzealous-blackout').length !== 0) {
 
       // replace modal content with new content
       $.fn.overzealous.close({
@@ -67,11 +52,9 @@
 
       });
 
-
-
     } else {
 
-      $('body').append(markup);
+      $('body').prepend('<div id="overzealous-blackout" class="'+that.attr('id')+'"></div>');
 
       open();
     }
@@ -154,30 +137,21 @@
 
   $.fn.overzealous.close = function(params, callback) {
 
-    if (typeof(params) == 'undefined') params = {}
+    if (typeof params  === 'undefined') {
+      params = {
+        close: true
+      }
+    }
 
-    $('body').removeClass('overzealous-open').removeAttr('overzealous-open'); // TODO - deprecate .overzealous-open class
-
-    $('body').removeClass('overzealous-preserve-options').removeAttr('overzealous-preserve-options');  // TODO - deprecate .overzealous-preserve-options class
-
-    if (typeof(params.close) == 'undefined') params.close = true;
+    $('body').removeAttr('overzealous-open');
 
     $('#overzealous-btns').remove();
 
-    if ($('#overzealous-modal-wrapper').length == 0) {
-
-      // Preserve actions
-      $('.overzealous-modal').hide().unwrap().removeClass('overzealous-modal');
-
-    } else {
-
-      $('.overzealous-modal').hide().appendTo('#overzealous-modal-wrapper').unwrap().removeClass('overzealous-modal');
-
-    }
+    $('.overzealous-modal').hide().unwrap().removeClass('overzealous-modal');
 
     if (params.close) {
 
-      $('#overzealous-modal-background').remove();
+      $('#overzealous-blackout').remove();
 
     }
 

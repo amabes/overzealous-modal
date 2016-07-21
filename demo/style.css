@@ -2,19 +2,8 @@ body {
 	padding:20px;
 	font-family: arial;
 	background: #e9eaed;
-    color: #484848;
+  color: #484848;
 }
-
-body[overzealous-open=true] #app {
-	filter: blur(5px); /* Someday, sigh ... */
-	-webkit-filter: blur(5px); /* Prefixed CSS3 blur filters */
-	-moz-filter: blur(5px);
-	-o-filter: blur(5px);
-	-ms-filter: blur(5px);
-	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='5'); /* IE lte 9 */
-}
-
-/* MODAL */
 
 .overzealous-modal h1 {
     font-size: 60px;

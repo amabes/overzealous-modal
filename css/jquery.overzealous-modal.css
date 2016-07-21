@@ -8,15 +8,29 @@
  * Licensed under MIT (https://github.com/amabes/overzealous-modal/blob/master/LICENSE)
  */
 
+ #overzealous-blackout {
+	background: rgba(0,0,0,.8);
+	height: 100%;
+	width: 100%;
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+ }
+
 #overzealous-modal-background {
 	position: fixed;
 	top: 0;
 	left:0;
 	width:100%;
 	height:100%;
-	background: rgba(255,255,255,.8);
 	display: none;
-	z-index: 1;
+	z-index: 101;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 
 .overzealous-modal {
