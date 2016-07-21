@@ -43,13 +43,15 @@
     // Modal already open
     if ($('#overzealous-blackout').length !== 0) {
 
+      $('#overzealous-blackout').removeClass();
+
       // replace modal content with new content
       $.fn.overzealous.close({
         close: false
       }, function() {
-
         open();
-
+        // Update classes on blackout before opening new overlay
+        $('#overzealous-blackout').addClass(that.attr('id'));
       });
 
     } else {
