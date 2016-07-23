@@ -1,0 +1,21 @@
+{
+  "name": "overzealous-modal",
+  "description": "Oversized modal",
+  "main": "dist/jquery.overzealous-modal.min.js",
+  "authors": [
+    "Alan Joseph Mabry"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "modal",
+    "overlay"
+  ],
+  "homepage": "https://github.com/amabes/overzealous-modal",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
