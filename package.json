@@ -1,0 +1,23 @@
+{
+  "name": "overzealous-modal",
+  "version": "0.0.0",
+  "description": "Oversized modal",
+  "main": "dist/jquery.overzealous-modal.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/amabes/overzealous-modal.git"
+  },
+  "keywords": [
+    "modal",
+    "overlay"
+  ],
+  "author": "Alan Joseph Mabry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amabes/overzealous-modal/issues"
+  },
+  "homepage": "https://github.com/amabes/overzealous-modal"
+}
