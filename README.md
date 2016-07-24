@@ -7,7 +7,17 @@ http://amabes.github.io/overzealous-modal
 
 <br>
 ##GETTING STARTED
-Grab the minified css and js in the "dist" folder.
+Install via bower
+```
+bower install overzealous-modal
+```
+###EMBER
+Add the following lines to ember-cli-build.js above "return app.toTree();"
+```
+app.import('bower_components/overzealous-modal/dist/jquery.overzealous-modal.min.css');
+app.import('bower_components/overzealous-modal/dist/jquery.overzealous-modal.min.js');
+```
+
 #####HTML
 ```
 <div id="ozm-1" style="display:none">
