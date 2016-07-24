@@ -4,7 +4,7 @@
  * Website: www.alanmabry.com/work
  * Contact: frontend@alanmabry.com
  *
- * Copyright 2015 overzealous-modal
+ * Copyright 2015-2016 overzealous-modal
  * Licensed under MIT (https://github.com/amabes/overzealous-modal/blob/master/LICENSE)
  */
- #overzealous-blackout{background:rgba(0,0,0,.8);height:100%;width:100%;display:none;position:fixed;top:0;left:0;z-index:100;overflow-y:scroll;-webkit-overflow-scrolling:touch}#overzealous-modal-background{position:fixed;top:0;left:0;width:100%;height:100%;display:none;z-index:101;overflow-y:scroll;-webkit-overflow-scrolling:touch}.overzealous-modal{width:50%;margin:10% auto;text-align:center}.overzealous-btn:first-child{margin:0 20px 0 0}
+ #overzealous-blackout,#overzealous-modal-background{height:100%;width:100%;display:none;position:fixed;top:0;left:0;overflow-y:scroll;-webkit-overflow-scrolling:touch}#overzealous-blackout{background:rgba(0,0,0,.8);z-index:100}#overzealous-modal-background{z-index:101}.overzealous-modal{width:75%;margin:10% auto;text-align:center;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.overzealous-btn:first-child{margin:0 20px 0 0}

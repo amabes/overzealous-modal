@@ -27,6 +27,14 @@ app.import('bower_components/overzealous-modal/dist/jquery.overzealous-modal.min
 	</p>
 </div>
 ```
+#####CSS
+```
+.overzealous-modal {
+  background: white;
+  height: 50%;
+  padding: 3%;
+}
+```
 #####JS
 ```
 $('#ozm-1').overzealous({
