@@ -30,9 +30,8 @@ app.import('bower_components/overzealous-modal/dist/jquery.overzealous-modal.min
 #####JS
 ```
 $('#ozm-1').overzealous({
-	buttons:{
-			//preserve:true, // Preserve actions already bound to elements in overlay markup
-    	primary:{
+	buttons:{ // (optional)
+    	primary:{ // (optional)
     		text:'Dashboard',
     		classes:'custom css classes',
     		action:function(){
@@ -40,7 +39,7 @@ $('#ozm-1').overzealous({
     			// the modal will close after executing this fn
     		}
     	},
-    	secondary:{
+    	secondary:{ (optional)
     		text:'Skip',
     		classes:'custom css classes',
 	    	action:function(){
