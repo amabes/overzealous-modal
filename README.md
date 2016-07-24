@@ -37,6 +37,10 @@ app.import('bower_components/overzealous-modal/dist/jquery.overzealous-modal.min
 ```
 #####JS
 ```
+$('#ozm-1').overzealous();
+```
+or
+```
 $('#ozm-1').overzealous({
 	buttons:{ // (optional)
     	primary:{ // (optional)
@@ -47,18 +51,20 @@ $('#ozm-1').overzealous({
     			// the modal will close after executing this fn
     		}
     	},
-    	secondary:{ (optional)
+    	secondary:{ // (optional)
     		text:'Skip',
     		classes:'custom css classes',
 	    	action:function(){
 	    		alert('secondary action');
-	    		// if you would like to close the modal in the secondary action
-	    		// simply add the following fn
-	    		// $.fn.overzealous.close({close:true});
+	    		$('#ozm-1').overzealous.close(); // (optional)
 	    	}
     	}
     }
 },function(){
 		// optional callback executed after overlay opens.
 });
+```
+To close the modal...
+```
+$('#ozm-1').overzealous.close();
 ```
