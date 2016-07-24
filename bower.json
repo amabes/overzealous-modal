@@ -1,7 +1,7 @@
 {
   "name": "overzealous-modal",
   "description": "Oversized modal",
-  "main": "dist/jquery.overzealous-modal.min.js",
+  "main": "js/jquery.overzealous-modal.js",
   "authors": [
     "Alan Joseph Mabry"
   ],
