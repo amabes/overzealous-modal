@@ -18,47 +18,48 @@
 
     var open = function() {
 
+      var id = that.attr('id');
+
+      // Update classes on blackout before opening new overlay
+      $('#overzealous-blackout').removeClass().addClass(id);
+
       that.addClass('overzealous-modal');
 
       $('body').attr('overzealous-open', true);
 
       // Wrap, then open keeping existing bindings in place.
-      that.wrap('<div id="overzealous-modal-background" class="'+that.attr('id')+'" rel="' + window.location.pathname + '"></div>');
+      that.wrap('<div id="overzealous-modal-background" class="overzealous-modal-background '+id+'" rel="' + window.location.pathname + '"></div>');
 
       // Setup buttons and bind actions
-      $.fn.overzealous.markup(opts);
+      if(opts.buttons){
+        $.fn.overzealous.markup(opts);
+      }
 
-      $('#overzealous-blackout').fadeIn('fast');
-
-      $('#overzealous-modal-background').show();
+      that.parents('.overzealous-modal-background').show();
+      that.show().addClass('rightCenter');
 
       $('.overzealous-modal').fadeIn('fast', function() {
-
         if ($.isFunction(callback)) callback();
-
       });
 
     }
 
     // Modal already open
-    if ($('#overzealous-blackout').length !== 0) {
-
-      $('#overzealous-blackout').removeClass();
+    if ($('#overzealous-blackout').length > 0) {
 
       // replace modal content with new content
       $.fn.overzealous.close({
         close: false
       }, function() {
         open();
-        // Update classes on blackout before opening new overlay
-        $('#overzealous-blackout').addClass(that.attr('id'));
       });
 
     } else {
 
       $('body').prepend('<div id="overzealous-blackout" class="'+that.attr('id')+'"></div>');
-
+      $('#overzealous-blackout').fadeIn('fast');
       open();
+
     }
   };
 
@@ -68,13 +69,13 @@
 
     var markup = '<div id="overzealous-btns">';
 
-    if (typeof(opts.buttons) != 'undefined') {
+    if (typeof(opts.buttons) !== 'undefined') {
 
-      if (typeof(opts.buttons.primary) != 'undefined') {
+      if (typeof(opts.buttons.primary) !== 'undefined') {
 
         var p_id = ' ';
 
-        if (typeof(opts.buttons.primary.id) != 'undefined') {
+        if (typeof(opts.buttons.primary.id) !== 'undefined') {
 
           p_id = ' id="' + opts.buttons.primary.id + '"';
 
@@ -84,11 +85,11 @@
 
       }
 
-      if (typeof(opts.buttons.secondary) != 'undefined') {
+      if (typeof(opts.buttons.secondary) !== 'undefined') {
 
         var s_id = ' ';
 
-        if (typeof(opts.buttons.secondary.id) != 'undefined') {
+        if (typeof(opts.buttons.secondary.id) !== 'undefined') {
 
           s_id = ' id="' + opts.buttons.secondary.id + '"';
 
@@ -104,17 +105,13 @@
 
     $('.overzealous-modal').append(markup);
 
-    if (typeof(opts.buttons) != 'undefined') {
-
-      $.fn.overzealous.click_events(opts.buttons);
-
-    }
+    $.fn.overzealous.click_events(opts.buttons);
 
   };
 
   $.fn.overzealous.click_events = function(buttons) {
 
-    if (typeof(buttons.primary) != 'undefined') {
+    if (typeof(buttons.primary) !== 'undefined') {
 
       $('.overzealous-btn[primary]').unbind().click(function() {
 
@@ -126,7 +123,7 @@
 
     }
 
-    if (typeof(buttons.secondary) != 'undefined') {
+    if (typeof(buttons.secondary) !== 'undefined') {
 
       $('.overzealous-btn[secondary]').unbind().click(function() {
 
@@ -145,19 +142,21 @@
       }
     }
 
-    $('body').removeAttr('overzealous-open');
-
-    $('#overzealous-btns').remove();
-
-    $('.overzealous-modal').hide().unwrap().removeClass('overzealous-modal');
-
     if (params.close) {
 
+      $('.overzealous-modal').hide().unwrap().removeClass('overzealous-modal');
+      $('#overzealous-btns').remove();
       $('#overzealous-blackout').remove();
+      $('body').removeAttr('overzealous-open');
+
+    } else {
+
+      $('.overzealous-modal:visible').addClass('centerLeft');
+      setTimeout(()=> {
+        if ($.isFunction(callback)) callback();
+      }, 250);
 
     }
-
-    if ($.isFunction(callback)) callback();
 
   };
 
