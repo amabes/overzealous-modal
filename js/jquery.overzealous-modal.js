@@ -148,11 +148,12 @@
       $('#overzealous-btns').remove();
       $('#overzealous-blackout').remove();
       $('body').removeAttr('overzealous-open');
+      if ($.isFunction(callback)) callback();
 
     } else {
 
       $('.overzealous-modal:visible').addClass('centerLeft');
-      setTimeout(()=> {
+      setTimeout(function(){
         if ($.isFunction(callback)) callback();
       }, 250);
 
